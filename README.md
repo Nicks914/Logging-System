@@ -25,14 +25,16 @@ This repo implements a simple centralized logging system composed of:
 
 ## Quick Start
 
-- From within a service directory (log-server)
+From within a service directory (log-server)
+```bash
 go mod tidy       # cleans and adds missing modules
-
+```
+Build Docker
 ```bash
 docker compose up --build
 ```
 
-Once up:
+Once Docker up:
 - `log-server` APIs:
   - `GET http://localhost:8080/logs?limit=10&sort=timestamp`
   - `GET http://localhost:8080/logs?level=error`
