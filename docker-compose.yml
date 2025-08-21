@@ -1,0 +1,38 @@
+services:
+  log-server:
+    build: ./log-server
+    container_name: log-server
+    ports:
+      - "8080:8080"
+    volumes:
+      - logsdata:/app/data
+
+  log-collector:
+    build: ./log-collector
+    container_name: log-collector
+    environment:
+      - LOG_SERVER_URL=http://log-server:8080/ingest
+      - UDP_ADDR=:5140
+    depends_on:
+      - log-server
+    ports:
+      - "5140:5140/udp"
+
+  linux-sim:
+    build: ./clients/linux-sim
+    container_name: linux-sim
+    environment:
+      - COLLECTOR_ADDR=log-collector:5140
+    depends_on:
+      - log-collector
+
+  windows-sim:
+    build: ./clients/windows-sim
+    container_name: windows-sim
+    environment:
+      - COLLECTOR_ADDR=log-collector:5140
+    depends_on:
+      - log-collector
+
+volumes:
+  logsdata:

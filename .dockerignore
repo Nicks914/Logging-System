@@ -1,0 +1,8 @@
+**/.git
+**/bin
+**/obj
+**/node_modules
+**/.cache
+**/.DS_Store
+**/vendor
+**/data/*.jsonl
