@@ -25,6 +25,9 @@ This repo implements a simple centralized logging system composed of:
 
 ## Quick Start
 
+- From within a service directory (log-server)
+go mod tidy       # cleans and adds missing modules
+
 ```bash
 docker compose up --build
 ```
